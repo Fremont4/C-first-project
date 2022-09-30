@@ -9,6 +9,7 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
+    "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
@@ -21,6 +22,11 @@
     "lib": [
       "es2020",
       "dom"
+    ],
+    "typeRoots": [
+      "node-modues/@type",
+      "node-modues/@angular",
+      "node-modues/@angular/common/http",
     ]
   },
   "angularCompilerOptions": {

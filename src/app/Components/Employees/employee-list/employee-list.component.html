@@ -11,6 +11,7 @@
               <th scope="col">Phone</th>
               <th scope="col">Salary</th>
               <th scope="col">Department</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -23,6 +24,13 @@
               <td>{{employee.phone}}</td>
               <td>{{employee.salary}}</td>
               <td>{{employee.department}}</td>
+              <td >              
+                <a type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" [routerLink]="['/employees','edit',employee.id]">
+                View
+              </a>
+</td>
+
+
             </tr>
             
           </tbody>
