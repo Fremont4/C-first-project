@@ -48,11 +48,47 @@ namespace Interface.Api.Controllers
         {
           var employee = await _interfaceDbContext.Employees.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (employee==null)
+            if (employee==null)   
             {
                 return NotFound();
             }
             return Ok(employee);
         }
+        //for updating of employee in a database.
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> UpdateEmployee([FromRoute]Guid id, Employee UpdateEmployeeRequest) {
+            var employee = await _interfaceDbContext.Employees.FindAsync(id);
+
+            if (employee==null)
+            {
+                return NotFound();
+            }
+            employee.firstName = UpdateEmployeeRequest.firstName;
+            employee.Email = UpdateEmployeeRequest.Email;
+            employee.Phone = UpdateEmployeeRequest.Phone;
+            employee.Salary = UpdateEmployeeRequest.Salary;
+            employee.Department = UpdateEmployeeRequest.Department;
+            await _interfaceDbContext.SaveChangesAsync();
+            return Ok(employee);
+        }
+
+        //for viewing existence of employee in a database.
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> DeleteEmployee([FromRoute] Guid id) {
+       
+            var employee = await _interfaceDbContext.Employees.FindAsync(id);
+
+            if (employee==null)
+            {
+                return NotFound();
+            }
+            _interfaceDbContext.Employees.Remove(employee);
+            await _interfaceDbContext.SaveChangesAsync();
+            return Ok(employee);
+        }                                                         
+
     }
+
 }
